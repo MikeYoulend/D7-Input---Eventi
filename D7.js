@@ -141,6 +141,8 @@ function findJobs(jobs) {
   // Pulisci la lista dei lavori ogni volta che viene eseguita la ricerca
   jobList.innerHTML = "";
 
+  const MatchingJobs = []
+
   jobs.forEach(job => {
     // Convertire i title di job e la location in caratteri minuscoli per una ricerca case-insensitive
     const lowercaseTitle = job.title.toLowerCase();
@@ -148,8 +150,9 @@ function findJobs(jobs) {
 
     // Verificare se i title di jobs contengono la parola chiave "title" e se la location di jobs contiene la parola chiave "location"
     if (lowercaseTitle.includes(title) && lowercaseLocation.includes(location)) {
-      console.log(job.title, job.location);
-      // Se il lavoro soddisfa i criteri di ricerca, crea un nuovo elemento <li> per rappresentarlo
+      MatchingJobs.push(job);
+      
+      // gSe il lavoro soddisfa i criteri di ricerca, crea un nuovo elemento <li> per rappresentarlo
       const listItem = document.createElement("li");
       listItem.style.listStyleType='none'
 
@@ -168,6 +171,8 @@ function findJobs(jobs) {
       count++; // Incrementa il conteggio dei lavori trovati
     }
   });
+
+  console.log(MatchingJobs);
   // Stampare il numero totale di lavori trovati
   console.log("Numero di lavori trovati:", count);
 }
